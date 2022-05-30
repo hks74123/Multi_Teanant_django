@@ -18,14 +18,19 @@ def home(request):
     print(name)
 
     # feature articles on the home page
-    featured = Article.articlemanager.filter(featured=True)[0:3]
+    featured = Article.articlemanager.filter(featured=True)[0:1]
 
-    context = {
-        'name': name,
-        'articles': featured
-    }
+    # context = {
+    #     'name': name,
+    #     'articles': featured
+    # }
+    print(featured)
+    if(len(featured)==0):
+        feat='No article published yet'
+    for f in featured:
+        feat = f.headline
 
-    return HttpResponse(context)
+    return HttpResponse(feat)
 
 
 def articles(request):
